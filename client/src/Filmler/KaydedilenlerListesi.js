@@ -1,13 +1,22 @@
 import React from 'react';
+import { useHistory, Link } from "react-router-dom";
 
 export default function KaydedilenlerListesi(props) {
+  const history = useHistory();
+  function toMainPage() {
+    history.push("/");
+  }
   return (
     <div className="saved-list">
-      <h3>Kaydedilen Filmler:</h3>
-      {props.list.map(movie => (
+    <h3>Kaydedilen Filmler:</h3>
+    {props.list.map((movie) => (
+      <Link to={`/filmler/${movie.id}`}>
         <span className="saved-movie">{movie.title}</span>
-      ))}
-      <div className="home-button">Anasayfa</div>
+      </Link>
+    ))}
+    <div onClick={toMainPage} className="home-button">
+      Anasayfa
     </div>
-  );
+  </div>
+);
 }
